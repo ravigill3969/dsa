@@ -1,0 +1,24 @@
+{
+  "name": "dsa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ravigill3969/dsa.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ravigill3969/dsa/issues"
+  },
+  "homepage": "https://github.com/ravigill3969/dsa#readme",
+  "dependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
