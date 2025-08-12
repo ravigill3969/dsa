@@ -19,14 +19,11 @@ function PO(root) {
     if (r == null) {
       return;
     }
+    res.push(r.val);
 
     bt(r.left);
 
-    console.log(r.left);
-
     bt(r.right);
-    console.log(r.right)
-    res.push(r.val);
   }
 
   bt(root);
