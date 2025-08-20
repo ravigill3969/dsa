@@ -1,33 +1,49 @@
-class TreeNode {
-  constructor(val, right = null, left = null) {
-    this.val = val;
-    this.right = right;
-    this.left = left;
+/**
+ * @param {number} numCourses
+ * @param {number[][]} prerequisites
+ * @return {boolean}
+ */
+function canFinish(numCourses, prerequisites) {
+  const graph = new Map();
+
+  // build adjacency list
+  for (const [u, v] of prerequisites) {
+    if (!graph.has(u)) graph.set(u, []);
+    graph.get(u).push(v);
   }
+
+  const visiting = new Set();
+  const visited = new Set();
+
+  function dfs(node) {
+    if (visiting.has(node)) return false;
+    if (visited.has(node)) return true;
+
+    visiting.add(node);
+
+    const neighbors = graph.get(node) || [];
+    for (let i = 0; i < neighbors.length; i++) {
+      if (!dfs(neighbors[i])) return false;
+    }
+
+    visiting.delete(node);
+    visited.add(node);
+
+    return true;
+  }
+
+  for (let i = 0; i < numCourses; i++) {
+    if (!dfs(i)) return false;
+  }
+
+  return true;
 }
 
-// Construct the tree
-const root = new TreeNode(
-  1,
-  new TreeNode(2, new TreeNode(4), new TreeNode(5)),
-  new TreeNode(3, null, new TreeNode(6))
-);
+console.log(
+  canFinish(2, [
+    [0, 1],
+    [1, 0],
+  ])
+); // false
 
-function bfs(root) {
-  let queue = [root];
-
-  while (queue.length) {
-    let node = queue.shift();
-
-    console.log(node.val);
-
-    if (node && node.right) {
-      queue.push(node.right);
-    }
-    if (node && node.left) {
-      queue.push(node.left);
-    }
-  }
-}
-
-bfs(root);
+console.log(canFinish(2, [[0, 1]])); // true
