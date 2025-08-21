@@ -1,48 +1,48 @@
 /**
- * @param {number} numCourses
- * @param {number[][]} prerequisites
- * @return {boolean}
+ * @param {number} n
+ * @param {number[][]} edges
+ * @returns {boolean}
  */
-function canFinish(numCourses, prerequisites) {
-  const graph = new Map();
+function validTree(n, edges) {
+  if (edges.length !== n - 1) return false;
+  let graph = new Map();
 
-  // build adjacency list
-  for (const [u, v] of prerequisites) {
+  for (const [u, v] of edges) {
     if (!graph.has(u)) graph.set(u, []);
+    if (!graph.has(v)) graph.set(v, []);
     graph.get(u).push(v);
+    graph.get(v).push(u);
   }
 
-  let visiting = new Set();
   let visited = new Set();
 
-  function dfs(node) {
-    if (visiting.has(node)) return false;
-    if (visited.has(node)) return true;
-
-    visiting.add(node);
+  function dfs(node, parent) {
+    if (visited.has(node)) return false;
+    visited.add(node);
 
     let neighbours = graph.get(node) || [];
-    for (let i = 0; i < neighbours.length; i++) {
-      if (!dfs(neighbours[i])) return false;
+
+    for (let nei of neighbours) {
+      if (nei === parent) continue;
+      if (!dfs(nei, node)) return false;
     }
 
-    visiting.delete(node);
-    visited.add(node);
     return true;
   }
 
-  for (let [key, value] of graph) {
-    if (!dfs(key)) return false;
-  }
-
-  return true;
+  if (!dfs(0, -1)) return false;
+  console.log(visited.size);
+  return visited.size == n;
 }
 
 console.log(
-  canFinish(2, [
-    [0, 1],
-    [1, 0],
-  ])
-); // false
-
-console.log(canFinish(2, [[0, 1]])); // true
+  validTree(
+    (n = 5),
+    (edges = [
+      [0, 1],
+      [0, 2],
+      [0, 3],
+      [1, 4],
+    ])
+  )
+); // true
