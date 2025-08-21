@@ -12,8 +12,8 @@ function canFinish(numCourses, prerequisites) {
     graph.get(u).push(v);
   }
 
-  const visiting = new Set();
-  const visited = new Set();
+  let visiting = new Set();
+  let visited = new Set();
 
   function dfs(node) {
     if (visiting.has(node)) return false;
@@ -21,19 +21,18 @@ function canFinish(numCourses, prerequisites) {
 
     visiting.add(node);
 
-    const neighbors = graph.get(node) || [];
-    for (let i = 0; i < neighbors.length; i++) {
-      if (!dfs(neighbors[i])) return false;
+    let neighbours = graph.get(node) || [];
+    for (let i = 0; i < neighbours.length; i++) {
+      if (!dfs(neighbours[i])) return false;
     }
 
     visiting.delete(node);
     visited.add(node);
-
     return true;
   }
 
-  for (let i = 0; i < numCourses; i++) {
-    if (!dfs(i)) return false;
+  for (let [key, value] of graph) {
+    if (!dfs(key)) return false;
   }
 
   return true;
