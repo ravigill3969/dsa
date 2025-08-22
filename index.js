@@ -1,54 +1,63 @@
-/**
- * @param {number} n
- * @param {number[][]} edges
- * @returns {boolean}
- */
-function countComponents(n, edges) {
-  let graph = new Map();
-
-  for (const [u, v] of edges) {
-    if (!graph.has(u)) graph.set(u, []);
-    if (!graph.has(v)) graph.set(v, []);
-    graph.get(u).push(v);
-    graph.get(v).push(u);
-  }
-
-  let visited = new Set();
-  let count = 0;
-
-  function dfs(node) {
-    if (visited.has(node)) return;
-
-    visited.add(node);
-
-    let neighbours = graph.get(node) || [];
-
-    for (let n of neighbours) {
-      dfs(n);
+class TrieNode {
+    constructor() {
+        this.children = new Map();
+        this.endOfWord = false;
     }
-
-    return;
-  }
-
-  for (let i = 0; i < n; i++) {
-    if (!visited.has(i)) {
-      count++;
-      dfs(i);
-    }
-  }
-
-  console.log(count);
-  return count;
 }
 
-console.log(
-  countComponents(
-    (n = 6),
-    (edges = [
-      [0, 1],
-      [1, 2],
-      [2, 3],
-      [4, 5],
-    ])
-  )
-); // true
+
+class PrefixTree {
+    constructor() { this.root = new TrieNode(); }
+
+    /**
+     * @param {string} word
+     * @return {void}
+     */
+    insert(word) {
+        let c = this.root;
+
+        for (let i = 0; i < word.length; i++) {
+            if (!c.children.has(word[i])) {
+                c.children.set(word[i], new TrieNode());
+            }
+            c = c.children.get(word[i]);
+        }
+        c.endOfWord = true;
+    }
+
+    /**
+     * @param {string} word
+     * @return {boolean}
+     */
+    search(word) {
+        let cur = this.root;
+
+        for (let c of word) {
+            if (!cur.children.has(c)) return false;
+
+            cur = cur.children.get(c);
+        }
+
+        if (cur.endOfWord) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @param {string} prefix
+     * @return {boolean}
+     */
+    startsWith(prefix) {
+        let cur = this.root;
+
+        for (let c of prefix) {
+            if (!cur.children.has(c)) return false;
+
+            cur = cur.children.get(c);
+        }
+
+        return true;
+    }
+}
