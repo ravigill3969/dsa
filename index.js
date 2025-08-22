@@ -1,63 +1,59 @@
 class TrieNode {
-    constructor() {
-        this.children = new Map();
-        this.endOfWord = false;
-    }
+  constructor() {
+    this.children = new Map();
+    this.end = false;
+  }
 }
 
+class WordDictionary {
+  constructor() {
+    this.root = new TrieNode();
+  }
 
-class PrefixTree {
-    constructor() { this.root = new TrieNode(); }
+  /**
+   * @param {string} word
+   * @return {void}
+   */
+  addWord(word) {
+    let cur = this.root;
 
-    /**
-     * @param {string} word
-     * @return {void}
-     */
-    insert(word) {
-        let c = this.root;
+    for (let c of word) {
+      if (!cur.children.has(c)) {
+        cur.children.set(c, new TrieNode());
+      }
 
-        for (let i = 0; i < word.length; i++) {
-            if (!c.children.has(word[i])) {
-                c.children.set(word[i], new TrieNode());
-            }
-            c = c.children.get(word[i]);
-        }
-        c.endOfWord = true;
+      cur = cur.children.get(c);
     }
 
-    /**
-     * @param {string} word
-     * @return {boolean}
-     */
-    search(word) {
-        let cur = this.root;
+    cur.end = true;
+  }
 
-        for (let c of word) {
-            if (!cur.children.has(c)) return false;
+  /**
+   * @param {string} word
+   * @return {boolean}
+   */
+  search(word) {
+    function dfs(index, root) {
+      let cur = root;
 
-            cur = cur.children.get(c);
-        }
+      for (let i = index; i < word.length; i++) {
+        if (word[i] == ".") {
+          for (let child of cur.children.values()) {
+            if (dfs(i + 1, child)) return true;
+          }
 
-        if (cur.endOfWord) {
-            return true;
+          return false;
         } else {
+          if (!cur.children.has(word[i])) {
             return false;
+          } else {
+            cur = cur.children.get(word[i]);
+          }
         }
+      }
+      return cur.end;
     }
 
-    /**
-     * @param {string} prefix
-     * @return {boolean}
-     */
-    startsWith(prefix) {
-        let cur = this.root;
-
-        for (let c of prefix) {
-            if (!cur.children.has(c)) return false;
-
-            cur = cur.children.get(c);
-        }
-
-        return true;
-    }
+    dfs(0, this.root);
+  }
 }
