@@ -1,44 +1,42 @@
 /**
  * @param {number[][]} intervals
- * @param {number[]} newInterval
  * @return {number[][]}
  */
-function insert(intervals, newInterval) {
+function merge(intervals) {
   let res = [];
 
-  let i = 0;
+  if (intervals.length === 0) return res;
 
-  while (i < intervals.length && intervals[i][1] < newInterval[0]) {
-    res.push(intervals[i]);
-    i++;
-  }
+  intervals.sort((a, b) => a[0] - b[0]);
 
-  while (i < intervals.length && intervals[i][0] <= newInterval[1]) {
-    newInterval[0] = Math.min(intervals[i][0], newInterval[0]);
-    newInterval[1] = Math.max(intervals[i][1], newInterval[1]);
-
-    i++;
-  }
-
-  res.push(newInterval);
-
+  let i = 1;
+  let push = intervals[0];
   while (i < intervals.length) {
-    res.push(intervals[i]);
+    let [p1, p2] = push;
+    let [i1, i2] = intervals[i];
+
+    if (p2 >= i1) {
+      push[0] = Math.min(p1, i1);
+      push[1] = Math.max(p2, i2);
+    } else {
+      res.push(push);
+      push = intervals[i];
+    }
+
     i++;
   }
+  res.push(push);
 
   return res;
 }
 
-let intervals = [
-  [1, 2], // before newInterval
-  [3, 5], // overlaps newInterval
-  [6, 7], // overlaps newInterval
-  [8, 10], // after newInterval
-];
+let res = merge(
+  (intervals = [
+    [1, 3],
+    [1, 5],
+    [6, 7],
+  ])
+);
 
-let newInterval = [4, 6];
-
-let res = insert(intervals, newInterval);
 console.log(res);
-// Expected output: [[1, 2], [3, 7], [8, 10]]
+// [[1,5],[6,7]]
