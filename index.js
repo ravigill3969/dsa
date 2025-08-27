@@ -1,42 +1,41 @@
-/**
- * @param {number[][]} intervals
- * @return {number[][]}
- */
-function merge(intervals) {
-  let res = [];
+class Solution {
+  /**
+   * @param {number[][]} intervals
+   * @return {number}
+   */
+  eraseOverlapIntervals(intervals) {
+    intervals.sort((a, b) => {
+      if (a[0] === b[0]) {
+        return a[1] - b[1];
+      }
+      return a[0] - b[0];
+    });
 
-  if (intervals.length === 0) return res;
+    let res = 0;
+    let prevEnd = intervals[0][1];
 
-  intervals.sort((a, b) => a[0] - b[0]);
-
-  let i = 1;
-  let push = intervals[0];
-  while (i < intervals.length) {
-    let [p1, p2] = push;
-    let [i1, i2] = intervals[i];
-
-    if (p2 >= i1) {
-      push[0] = Math.min(p1, i1);
-      push[1] = Math.max(p2, i2);
-    } else {
-      res.push(push);
-      push = intervals[i];
+    for (let i = 1; i < intervals.length; i++) {
+      const [start, end] = intervals[i];
+      if (prevEnd <= start) {
+        prevEnd = end;
+      } else {
+        res++;
+        prevEnd = Math.min(end, prevEnd);
+      }
     }
 
-    i++;
+    return res;
   }
-  res.push(push);
-
-  return res;
 }
 
-let res = merge(
+let sol = new Solution();
+
+let res = sol.eraseOverlapIntervals(
   (intervals = [
-    [1, 3],
-    [1, 5],
-    [6, 7],
+    [1, 2],
+    [2, 4],
+    [1, 4],
   ])
 );
 
 console.log(res);
-// [[1,5],[6,7]]
