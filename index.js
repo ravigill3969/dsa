@@ -8,31 +8,48 @@ class Interval {
 class Solution {
   /**
    * @param {Interval[]} intervals
-   * @returns {boolean}
+   * @returns {number}
    */
-  canAttendMeetings(intervals) {
-    intervals.sort((a, b) => a.start - b.start);
+  minMeetingRooms(intervals) {
+    let start = [];
+    let end = [];
 
-    let i = 0;
 
-    while (i < intervals.length - 1) {
-      if (intervals[i].end > intervals[i + 1].start) {
-        return false;
-      }
+    for (let i = 0; i < intervals.length; i++) {
+      start.push(intervals[i].start);
+      end.push(intervals[i].end);
     }
 
-    return true;
+    end.sort((a, b) => a - b);
+    start.sort((a, b) => a - b);
+
+    let count = 0;
+    let res = 0;
+
+    let i = 0;
+    let j = 0;
+
+    while (i < start.length && j < end.length) {
+      if (start[i] < end[j]) {
+        i++;
+        count++;
+      } else {
+        j++;
+        count--;
+      }
+
+      res = Math.max(res, count);
+    }
+
+    return res;
   }
 }
 
-let intervals = [
+const intervals = [
   new Interval(0, 30),
   new Interval(5, 10),
   new Interval(15, 20),
 ];
 
-let sol = new Solution();
-
-let res = sol.canAttendMeetings(intervals);
-
-console.log(res);
+const sol = new Solution();
+console.log(sol.minMeetingRooms(intervals));
