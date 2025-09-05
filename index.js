@@ -1,55 +1,20 @@
-class Interval {
-  constructor(start, end) {
-    this.start = start;
-    this.end = end;
+/**
+ * @param {number} n
+ * @return {number}
+ */
+function climbStairs(n) {
+  if (n <= 2) {
+    return n;
   }
-}
 
-class Solution {
-  /**
-   * @param {Interval[]} intervals
-   * @returns {number}
-   */
-  minMeetingRooms(intervals) {
-    let start = [];
-    let end = [];
+  let one = 1
+  let two = 1
 
-
-    for (let i = 0; i < intervals.length; i++) {
-      start.push(intervals[i].start);
-      end.push(intervals[i].end);
-    }
-
-    end.sort((a, b) => a - b);
-    start.sort((a, b) => a - b);
-
-    let count = 0;
-    let res = 0;
-
-    let i = 0;
-    let j = 0;
-
-    while (i < start.length && j < end.length) {
-      if (start[i] < end[j]) {
-        i++;
-        count++;
-      } else {
-        j++;
-        count--;
-      }
-
-      res = Math.max(res, count);
-    }
-
-    return res;
+  for (let i = 0 ; i< n - 1; i++){
+    let temp =  one
+    one = one + two
+    two = temp
   }
+
+  return one
 }
-
-const intervals = [
-  new Interval(0, 30),
-  new Interval(5, 10),
-  new Interval(15, 20),
-];
-
-const sol = new Solution();
-console.log(sol.minMeetingRooms(intervals));
