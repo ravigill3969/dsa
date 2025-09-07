@@ -1,20 +1,23 @@
 /**
- * @param {number} n
+ * @param {number[]} nums
  * @return {number}
  */
-function climbStairs(n) {
-  if (n <= 2) {
-    return n;
+function findDuplicate(nums) {
+  let newArr = new Array(nums.length).fill(0);
+
+  for (let i = 0; i < nums.length; i++) {
+    let cur = nums[i];
+
+    if (newArr[cur] == -1) {
+      return cur;
+    }
+
+    newArr[cur] = -1;
   }
 
-  let one = 1
-  let two = 1
+  return -1;
 
-  for (let i = 0 ; i< n - 1; i++){
-    let temp =  one
-    one = one + two
-    two = temp
-  }
-
-  return one
+  
 }
+
+findDuplicate((nums = [1, 2, 3, 2, 2]));
