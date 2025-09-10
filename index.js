@@ -1,21 +1,19 @@
 /**
  * @param {number[]} nums
- * @return {boolean}
+ * @return {number}
  */
-function canJump(nums) {
-  let target = nums.length - 1;
+function maxSubArray(nums) {
+  let globalMax = -Infinity;
+  let max = -Infinity;
 
-  for (let i = nums.length - 2; i >= 0; i--) {
-    if (nums[i] + i >= target) {
-      target = i;
-    }
+  for (let i = 0; i < nums.length; i++) {
+    max = Math.max(nums[i], max + nums[i]);
+    globalMax = Math.max(max, globalMax);
   }
 
-  return target == 0;
+  console.log(max);
+  return globalMax;
 }
 
-let res = canJump((nums = [2, 3, 1, 1, 4]));
-console.log(res);
-
-res = canJump((nums = [1, 2, 1, 0, 1]));
-console.log(res);
+maxSubArray((nums = [2, -3, 4, -2, 2, 1, -1, 4]));
+maxSubArray((nums = [-1]));
