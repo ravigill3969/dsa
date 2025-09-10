@@ -1,23 +1,21 @@
 /**
  * @param {number[]} nums
- * @return {number}
+ * @return {boolean}
  */
-function findDuplicate(nums) {
-  let newArr = new Array(nums.length).fill(0);
+function canJump(nums) {
+  let target = nums.length - 1;
 
-  for (let i = 0; i < nums.length; i++) {
-    let cur = nums[i];
-
-    if (newArr[cur] == -1) {
-      return cur;
+  for (let i = nums.length - 2; i >= 0; i--) {
+    if (nums[i] + i >= target) {
+      target = i;
     }
-
-    newArr[cur] = -1;
   }
 
-  return -1;
-
-  
+  return target == 0;
 }
 
-findDuplicate((nums = [1, 2, 3, 2, 2]));
+let res = canJump((nums = [2, 3, 1, 1, 4]));
+console.log(res);
+
+res = canJump((nums = [1, 2, 1, 0, 1]));
+console.log(res);
