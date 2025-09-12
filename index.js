@@ -1,19 +1,19 @@
 /**
- * @param {number[]} nums
+ * @param {number} m
+ * @param {number} n
  * @return {number}
  */
-function maxSubArray(nums) {
-  let globalMax = -Infinity;
-  let max = -Infinity;
+function uniquePaths(m, n) {
+  let dp = new Array(n).fill(1);
 
-  for (let i = 0; i < nums.length; i++) {
-    max = Math.max(nums[i], max + nums[i]);
-    globalMax = Math.max(max, globalMax);
+  for (let i = m - 2; i >= 0; i--) {
+    for (let j = n - 2; j >= 0; j--) {
+      dp[j] += dp[j + 1];
+    }
   }
 
-  console.log(max);
-  return globalMax;
+  return dp[0];
 }
 
-maxSubArray((nums = [2, -3, 4, -2, 2, 1, -1, 4]));
-maxSubArray((nums = [-1]));
+let res = uniquePaths(3, 6);
+console.log(res)
