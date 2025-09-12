@@ -1,19 +1,21 @@
 /**
- * @param {number} m
- * @param {number} n
+ * @param {number[]} nums
  * @return {number}
  */
-function uniquePaths(m, n) {
-  let dp = new Array(n).fill(1);
+function rob(nums) {
+  if (nums.length === 0) return 0;
+  if (nums.length === 1) return nums[0];
 
-  for (let i = m - 2; i >= 0; i--) {
-    for (let j = n - 2; j >= 0; j--) {
-      dp[j] += dp[j + 1];
-    }
+  let prev2 = nums[0]; // dp[0]
+  let prev1 = Math.max(nums[0], nums[1]); // dp[1]
+
+  for (let i = 2; i < nums.length; i++) {
+    let curr = Math.max(prev1, prev2 + nums[i]);
+    prev2 = prev1;
+    prev1 = curr;
   }
 
-  return dp[0];
+  return prev1;
 }
 
-let res = uniquePaths(3, 6);
-console.log(res)
+console.log(rob([1, 1, 3, 3]));
