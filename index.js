@@ -2,20 +2,25 @@
  * @param {number[]} nums
  * @return {number}
  */
-function rob(nums) {
-  if (nums.length === 0) return 0;
-  if (nums.length === 1) return nums[0];
+function majorityElement(nums) {
+  let count = 1;
+  let cn = nums[0];
 
-  let prev2 = nums[0]; // dp[0]
-  let prev1 = Math.max(nums[0], nums[1]); // dp[1]
+  for (let i = 0; i < nums.length; i++) {
+    if (count == 0) {
+      cn = nums[i];
+      count++;
+    }
 
-  for (let i = 2; i < nums.length; i++) {
-    let curr = Math.max(prev1, prev2 + nums[i]);
-    prev2 = prev1;
-    prev1 = curr;
+    if (nums[i] != cn) {
+      count--;
+    } else {
+      count++;
+    }
   }
 
-  return prev1;
+  console.log(cn)
+  return cn
 }
 
-console.log(rob([1, 1, 3, 3]));
+majorityElement((nums = [5, 5, 1, 1, 1, 5, 5]));
