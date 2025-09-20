@@ -2,25 +2,29 @@
  * @param {number[]} nums
  * @return {number}
  */
-function majorityElement(nums) {
-  let count = 1;
-  let cn = nums[0];
+var rob = function (nums) {
+  if (nums.length === 1) return nums[0];
 
-  for (let i = 0; i < nums.length; i++) {
-    if (count == 0) {
-      cn = nums[i];
-      count++;
+  function robLinear(arr) {
+    let prev2 = 0,
+      prev1 = 0;
+    for (let num of arr) {
+      let cur = Math.max(prev1, prev2 + num);
+      prev2 = prev1;
+      prev1 = cur;
     }
-
-    if (nums[i] != cn) {
-      count--;
-    } else {
-      count++;
-    }
+    return prev1;
   }
 
-  console.log(cn)
-  return cn
-}
+  // Case 1: rob from house 0 → n-2
+  // Case 2: rob from house 1 → n-1
+  return Math.max(
+    robLinear(nums.slice(0, nums.length - 1)),
+    robLinear(nums.slice(1))
+  );
+};
 
-majorityElement((nums = [5, 5, 1, 1, 1, 5, 5]));
+// Example
+console.log(rob([2, 3, 2])); // 3
+console.log(rob([1, 2, 3, 1])); // 4
+console.log(rob([1, 2, 3])); // 3
