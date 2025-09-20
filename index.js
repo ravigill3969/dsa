@@ -2,23 +2,22 @@
  * @param {number[]} nums
  * @return {number}
  */
-var rob = function (nums) {
-  if (nums.length == 1) {
-    return nums[0];
+var jump = function (nums) {
+  let jumps = 0;
+  let curEnd = 0;
+  let farthest = 0;
+
+  for (let i = 0; i < nums.length - 1; i++) {
+    farthest = Math.max(farthest, i + nums[i]);
+
+    if (i === curEnd) {
+      jumps++;
+      curEnd = farthest;
+    }
   }
 
-  if (nums.length == 2) {
-    return Math.max(nums[0], nums[1]);
-  }
-
-  let prev2 = nums[0];
-  let prev1 = Math.max(prev2, nums[1]);
-
-  for (let i = 2; i < nums.length; i++) {
-    let cur = Math.max(prev1, prev2 + nums[i]);
-    prev2 = prev1;
-    prev1 = cur;
-  }
-
-  return prev1
+  return jumps;
 };
+
+console.log(jump([2, 3, 1, 1, 4])); // 2
+console.log(jump([2, 3, 0, 1, 4])); // 2
