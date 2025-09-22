@@ -1,36 +1,31 @@
 /**
- * @param {number[]} nums
- * @param {number} target
+ * @param {character[]} chars
  * @return {number}
  */
-var search = function (nums, target) {
-  let l = 0;
-  let r = nums.length - 1;
-
-  while (l <= r) {
-    let mid = Math.floor((l + r) / 2);
-
-    if (nums[mid] === target) {
-      return mid;
-    }
-
-    if (nums[l] <= nums[mid]) {
-      if (nums[l] <= target && target < nums[mid]) {
-        r = mid - 1;
-      } else {
-        l = mid + 1;
-      }
+var compress = function (chars) {
+  let s = "";
+  let count = 1;
+  for (let i = 0; i < chars.length; i++) {
+    if (chars[i] === chars[i + 1]) {
+      count++;
     } else {
-      if (nums[mid] < target && target <= nums[r]) {
-        l = mid + 1;
+      if (count == 1) {
+        s += chars[i];
       } else {
-        r = mid - 1;
+        s += chars[i] + count;
       }
+      count = 1;
     }
   }
 
-  return -1;
+  for (let i = 0; i < chars.length; i++) {
+    if (i >= s.length - 1) {
+      chars.pop();
+    }
+    chars[i] = s[i];
+  }
+
+  return chars.length
 };
 
-let res = search([4, 5, 6, 7, 0, 1, 2], 0);
-console.log(res); // ✅ 4
+compress((chars = ["a", "a", "b", "b", "c", "c", "c"]));
