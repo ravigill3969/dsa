@@ -1,26 +1,36 @@
 /**
  * @param {number[]} nums
+ * @param {number} target
  * @return {number}
  */
-var maxFrequencyElements = function (nums) {
-  let map = new Map();
-  let max = -1;
+var search = function (nums, target) {
+  let l = 0;
+  let r = nums.length - 1;
 
-  for (let i = 0; i < nums.length; i++) {
-    map.set(nums[i], (map.get(nums[i]) || 0) + 1);
-    max = Math.max(max, map.get(nums[i]));
-  }
+  while (l <= r) {
+    let mid = Math.floor((l + r) / 2);
 
-  let r = 0;
-  for (let [k, v] of map) {
-    if (v === max) {
-      r += v;
+    if (nums[mid] === target) {
+      return mid;
+    }
+
+    if (nums[l] <= nums[mid]) {
+      if (nums[l] <= target && target < nums[mid]) {
+        r = mid - 1;
+      } else {
+        l = mid + 1;
+      }
+    } else {
+      if (nums[mid] < target && target <= nums[r]) {
+        l = mid + 1;
+      } else {
+        r = mid - 1;
+      }
     }
   }
-  console.log(r);
-  return r;
+
+  return -1;
 };
 
-let nums = [1, 2, 2, 3, 1, 4];
-
-maxFrequencyElements(nums);
+let res = search([4, 5, 6, 7, 0, 1, 2], 0);
+console.log(res); // ✅ 4
