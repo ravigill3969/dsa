@@ -1,31 +1,25 @@
 /**
- * @param {character[]} chars
+ * @param {number[]} nums
+ * @param {number} k
  * @return {number}
  */
-var compress = function (chars) {
-  let s = "";
-  let count = 1;
-  for (let i = 0; i < chars.length; i++) {
-    if (chars[i] === chars[i + 1]) {
-      count++;
-    } else {
-      if (count == 1) {
-        s += chars[i];
-      } else {
-        s += chars[i] + count;
-      }
-      count = 1;
-    }
+var findMaxAverage = function (nums, k) {
+  let sum = 0;
+  for (let i = 0; i < k; i++) {
+    sum += nums[i];
   }
 
-  for (let i = 0; i < chars.length; i++) {
-    if (i >= s.length - 1) {
-      chars.pop();
-    }
-    chars[i] = s[i];
+  let max = sum / k;
+
+  for (let i = 1; i < nums.length - k + 1; i++) {
+    console.log(nums[i - 1], nums[i - 1 + k]);
+    sum = sum - nums[i - 1] + nums[i + k - 1];
+    let avg = sum / k;
+
+    max = Math.max(avg, max);
   }
 
-  return chars.length
+  console.log(max);
 };
 
-compress((chars = ["a", "a", "b", "b", "c", "c", "c"]));
+findMaxAverage((nums = [0, 1, 1, 3, 3]), (k = 4));
