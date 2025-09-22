@@ -2,22 +2,25 @@
  * @param {number[]} nums
  * @return {number}
  */
-var jump = function (nums) {
-  let jumps = 0;
-  let curEnd = 0;
-  let farthest = 0;
+var maxFrequencyElements = function (nums) {
+  let map = new Map();
+  let max = -1;
 
-  for (let i = 0; i < nums.length - 1; i++) {
-    farthest = Math.max(farthest, i + nums[i]);
-
-    if (i === curEnd) {
-      jumps++;
-      curEnd = farthest;
-    }
+  for (let i = 0; i < nums.length; i++) {
+    map.set(nums[i], (map.get(nums[i]) || 0) + 1);
+    max = Math.max(max, map.get(nums[i]));
   }
 
-  return jumps;
+  let r = 0;
+  for (let [k, v] of map) {
+    if (v === max) {
+      r += v;
+    }
+  }
+  console.log(r);
+  return r;
 };
 
-console.log(jump([2, 3, 1, 1, 4])); // 2
-console.log(jump([2, 3, 0, 1, 4])); // 2
+let nums = [1, 2, 2, 3, 1, 4];
+
+maxFrequencyElements(nums);
