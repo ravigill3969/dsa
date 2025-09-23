@@ -1,25 +1,25 @@
 /**
  * @param {number[]} nums
- * @param {number} k
  * @return {number}
  */
-var findMaxAverage = function (nums, k) {
-  let sum = 0;
-  for (let i = 0; i < k; i++) {
-    sum += nums[i];
+var pivotIndex = function (nums) {
+  let total = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    total += nums[i];
   }
 
-  let max = sum / k;
+  let left_sum = 0;
 
-  for (let i = 1; i < nums.length - k + 1; i++) {
-    console.log(nums[i - 1], nums[i - 1 + k]);
-    sum = sum - nums[i - 1] + nums[i + k - 1];
-    let avg = sum / k;
+  for (let i = 0; i < nums.length; i++) {
+    if (left_sum == total - left_sum - nums[i]) {
+      return i;
+    }
 
-    max = Math.max(avg, max);
+    left_sum += nums[i];
   }
 
-  console.log(max);
+  return -1;
 };
 
-findMaxAverage((nums = [0, 1, 1, 3, 3]), (k = 4));
+pivotIndex((nums = [1, 7, 3, 6, 5, 6]));
