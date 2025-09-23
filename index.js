@@ -1,25 +1,33 @@
 /**
- * @param {number[]} nums
- * @return {number}
+ * @param {string[]} strs
+ * @return {string[][]}
  */
-var pivotIndex = function (nums) {
-  let total = 0;
+var groupAnagrams = function (strs) {
+  if (strs.length === 1) return [strs];
+  let map = new Map();
+  let res = [];
 
-  for (let i = 0; i < nums.length; i++) {
-    total += nums[i];
-  }
+  for (let i = 0; i < strs.length; i++) {
+    let sortedString = strs[i].split("").sort().join("");
 
-  let left_sum = 0;
-
-  for (let i = 0; i < nums.length; i++) {
-    if (left_sum == total - left_sum - nums[i]) {
-      return i;
+    if (!map.has(sortedString)) {
+      map.set(sortedString, []);
     }
 
-    left_sum += nums[i];
+    map.get(sortedString).push(strs[i]);
   }
 
-  return -1;
+  for (let v of map.values()) {
+    res.push(v);
+  }
+  return res;
 };
 
-pivotIndex((nums = [1, 7, 3, 6, 5, 6]));
+console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
+// [["eat","tea","ate"],["tan","nat"],["bat"]]
+
+console.log(groupAnagrams([""]));
+// [[""]]
+
+console.log(groupAnagrams(["a"]));
+// [["a"]]
