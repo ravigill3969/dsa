@@ -1,33 +1,37 @@
+// 📌 Problem Statement:
+// Given an integer array nums and an integer k, return the maximum length of a subarray that sums to k. If there isn’t one, return 0.
+
 /**
- * @param {string[]} strs
- * @return {string[][]}
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
  */
-var groupAnagrams = function (strs) {
-  if (strs.length === 1) return [strs];
+var maxSubArrayLen = function (nums, k) {
+  let len = 0;
   let map = new Map();
-  let res = [];
 
-  for (let i = 0; i < strs.length; i++) {
-    let sortedString = strs[i].split("").sort().join("");
+  let sum = 0;
 
-    if (!map.has(sortedString)) {
-      map.set(sortedString, []);
+  for (let i = 0; i < nums.length; i++) {
+    sum += nums[i];
+
+    if (sum === k) {
+      len = i + 1;
     }
 
-    map.get(sortedString).push(strs[i]);
+    if (map.has(sum - k)) {
+      len = Math.max(len, i - map.get(sum - k));
+    }
+
+    if (!map.has(sum)) {
+      map.set(sum, i);
+    }
   }
 
-  for (let v of map.values()) {
-    res.push(v);
-  }
-  return res;
+  return len;
 };
-
-console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
-// [["eat","tea","ate"],["tan","nat"],["bat"]]
-
-console.log(groupAnagrams([""]));
-// [[""]]
-
-console.log(groupAnagrams(["a"]));
-// [["a"]]
+let entry = {
+  nums: [8, -1, 5, -2, 3, -3],
+  k: -3,
+};
+console.log(maxSubArrayLen(entry.nums, entry.k));
