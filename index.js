@@ -1,37 +1,41 @@
-// 📌 Problem Statement:
-// Given an integer array nums and an integer k, return the maximum length of a subarray that sums to k. If there isn’t one, return 0.
+// Given an integer array nums and an integer k, return true if nums has a continuous subarray of length at least two whose elements sum up to a
+//  multiple of k, or false otherwise.
+
+// An integer x is a multiple of k if there exists an integer n such that x = n * k.
+// 0 is always a multiple of k.
 
 /**
  * @param {number[]} nums
  * @param {number} k
- * @return {number}
+ * @return {boolean}
  */
-var maxSubArrayLen = function (nums, k) {
-  let len = 0;
+var checkSubarraySum = function (nums, k) {
   let map = new Map();
-
   let sum = 0;
 
   for (let i = 0; i < nums.length; i++) {
     sum += nums[i];
 
-    if (sum === k) {
-      len = i + 1;
+    let mod = sum % k;
+
+    if (map.has(mod)) {
+      let diff = i - map.get(mod);
+
+      if (diff >= 2) {
+        console.log(true);
+        return true;
+      }
     }
 
-    if (map.has(sum - k)) {
-      len = Math.max(len, i - map.get(sum - k));
-    }
-
-    if (!map.has(sum)) {
-      map.set(sum, i);
+    if (!map.has(mod)) {
+      map.set(mod, i);
     }
   }
 
-  return len;
+  console.log(false);
+  return false;
 };
-let entry = {
-  nums: [8, -1, 5, -2, 3, -3],
-  k: -3,
-};
-console.log(maxSubArrayLen(entry.nums, entry.k));
+
+checkSubarraySum((nums = [23, 2, 4, 6, 7]), (k = 6));
+checkSubarraySum((nums = [23, 2, 6, 4, 7]), (k = 6));
+checkSubarraySum((nums = [23, 2, 6, 4, 7]), (k = 13));
