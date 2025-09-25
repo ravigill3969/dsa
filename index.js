@@ -1,41 +1,33 @@
-// Given an integer array nums and an integer k, return true if nums has a continuous subarray of length at least two whose elements sum up to a
-//  multiple of k, or false otherwise.
+// Problem Statement
 
-// An integer x is a multiple of k if there exists an integer n such that x = n * k.
-// 0 is always a multiple of k.
+// Given an integer array nums and an integer k, return the number of non-empty subarrays that have a sum divisible by k.
+
+// A subarray is a contiguous part of an array.
 
 /**
  * @param {number[]} nums
  * @param {number} k
- * @return {boolean}
+ * @return {number}
  */
-var checkSubarraySum = function (nums, k) {
-  let map = new Map();
+var subarraysDivByK = function (nums, k) {
   let sum = 0;
+  let count = 0;
+  let map = new Map();
+  map.set(0, 1);
 
   for (let i = 0; i < nums.length; i++) {
     sum += nums[i];
 
-    let mod = sum % k;
+    let mod = ((sum % k) + k) % k;
 
     if (map.has(mod)) {
-      let diff = i - map.get(mod);
-
-      if (diff >= 2) {
-        console.log(true);
-        return true;
-      }
+      count += map.get(mod);
     }
 
-    if (!map.has(mod)) {
-      map.set(mod, i);
-    }
+    map.set(mod, (map.get(mod) || 0) + 1);
   }
 
-  console.log(false);
-  return false;
+  console.log(count);
 };
 
-checkSubarraySum((nums = [23, 2, 4, 6, 7]), (k = 6));
-checkSubarraySum((nums = [23, 2, 6, 4, 7]), (k = 6));
-checkSubarraySum((nums = [23, 2, 6, 4, 7]), (k = 13));
+subarraysDivByK((nums = [4, 5, 0, -2, -3, 1]), (k = 5));
