@@ -1,22 +1,41 @@
-function dbs(arr, k) {
-  let sum = 0;
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var minPathSum = function (grid) {
   let res = 0;
-  let map = new Map();
 
-  for (let i = 0; i < arr.length; i++) {
-    sum += arr[i];
+  let sum = grid[0][0];
+  for (let j = 1; j < grid[0].length; j++) {
+    sum += grid[0][j];
+    grid[0][j] = sum;
+  }
 
-    mod = ((sum % k) + k) % k;
+  sum = grid[0][0];
 
-    if (map.has(mod)) {
-      res += map.get(mod);
-      map.set(mod, map.get(mod) + 1);
-    } else {
-      map.set(mod, 1);
+  for (let i = 1; i < grid.length; i++) {
+    sum += grid[i][0];
+    grid[i][0] = sum;
+  }
+
+  for (let i = 1; i < grid.length; i++) {
+    for (let j = 1; j < grid[0].length; j++) {
+      let min = Math.min(
+        grid[i][j - 1] + grid[i][j],
+        grid[i - 1][j] + grid[i][j]
+      );
+
+      grid[i][j] = min;
     }
   }
 
-  console.log(res);
-}
+  return grid[grid.length - 1][grid[0].length - 1];
+};
 
-dbs([5, 0, 0, 1, -9, 3, 2], 5);
+console.log(
+  minPathSum([
+    [1, 3, 1],
+    [1, 5, 1],
+    [4, 2, 1],
+  ])
+);
