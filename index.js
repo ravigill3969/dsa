@@ -1,74 +1,59 @@
-class ListNode {
-  constructor(val, next = null) {
+class TreeNode {
+  constructor(val, left = null, right = null) {
     this.val = val;
-    this.next = next;
+    this.left = left;
+    this.right = right;
   }
 }
 
-function arrayToList(arr) {
+function arrayToTree(arr) {
   if (arr.length === 0) return null;
 
-  let dummy = new ListNode(0);
-  let current = dummy;
-
-  for (let num of arr) {
-    current.next = new ListNode(num);
-    current = current.next;
+  function helper(i) {
+    if (i >= arr.length || arr[i] === null) return null; // null for missing nodes
+    let node = new TreeNode(arr[i]);
+    node.left = helper(2 * i + 1);
+    node.right = helper(2 * i + 2);
+    return node;
   }
 
-  return dummy.next; // head of the linked list
+  return helper(0); // root
 }
 
-// Example
-let head = arrayToList([
-  47, 22, 81, 46, 94, 95, 90, 22, 55, 91, 6, 83, 49, 65, 10, 32, 41, 26, 83, 99,
-  14, 85, 42, 99, 89, 69, 30, 92, 32, 74, 9, 81, 5, 9,
-]);
+let arr = [3, 9, 20, null, null, 15, 7];
+let root = arrayToTree(arr);
+
 /**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
  *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
  * }
  */
-
 /**
- * @param {ListNode} head
+ * @param {TreeNode} root
  * @return {number}
  */
-var pairSum = function (head) {
-  if (!head) return null;
+var maxDepth = function (root) {
+  if (!root) return 0;
+  let res = 0;
 
-  let slow = head;
-  let fast = head;
+  function r(node, max) {
+    res = Math.max(res, max);
+    if (node.left) {
+      r(node.left, max + 1);
+    }
 
-  while (fast && fast.next) {
-    slow = slow.next;
-    fast = fast.next.next;
+    if (node.right) {
+      r(node.right, max + 1);
+    }
   }
 
-  let prev = null;
-  let cur = slow;
+  r(root, 1);
+  console.log(res);
 
-  while (cur) {
-    let next = cur.next;
-    cur.next = prev;
-    prev = cur;
-    cur = next;
-  }
-
-  let max = 0;
-  let p1 = head,
-    p2 = prev;
-
-  while (p2) {
-    max = Math.max(p1.val + p2.val, max);
-    p2 = p2.next;
-    p1 = p1.next;
-  }
-
-  console.log(max);
-  return max
+  return res;
 };
 
-pairSum(head);
+maxDepth(root);
