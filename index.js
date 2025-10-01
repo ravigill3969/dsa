@@ -2,17 +2,22 @@
  * @param {number[]} nums
  * @return {number}
  */
-var largestPerimeter = function (nums) {
-  nums.sort((a, b) => b - a);
+var triangularSum = function (nums) {
+  if (nums.length === 1) return nums[0];
 
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] < nums[i + 1] + nums[i + 2]) {
-      return nums[i] + nums[i + 1] + nums[i + 2];
+  if (nums.length === 2) return (nums[0] + nums[1]) % 10;
+
+  while (nums.length !== 1) {
+    for (let i = 0; i < nums.length - 1; i++) {
+      let j = i + 1;
+      nums[i] = (nums[i] + nums[j]) % 10;
     }
+
+    nums.pop();
   }
 
-  return 0;
+  return nums[0]
 };
 
-let res = largestPerimeter((nums = [1, 2, 1, 10]));
+let res = triangularSum((nums = [1, 2, 3, 4, 5]));
 console.log(res);
