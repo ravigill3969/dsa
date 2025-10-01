@@ -1,23 +1,21 @@
 /**
- * @param {number[]} nums
+ * @param {number} numBottles
+ * @param {number} numExchange
  * @return {number}
  */
-var triangularSum = function (nums) {
-  if (nums.length === 1) return nums[0];
+var numWaterBottles = function (numBottles, numExchange) {
+  let res = numBottles;
+  let q = Math.floor(numBottles / numExchange);
+  let r = Math.floor(numBottles % numExchange);
 
-  if (nums.length === 2) return (nums[0] + nums[1]) % 10;
-
-  while (nums.length !== 1) {
-    for (let i = 0; i < nums.length - 1; i++) {
-      let j = i + 1;
-      nums[i] = (nums[i] + nums[j]) % 10;
-    }
-
-    nums.pop();
+  while (q > 0) {
+    res += q;
+    let empty = q + r;
+    q = empty / numExchange;
+    r = Math.floor(empty % numExchange);
   }
 
-  return nums[0]
+  console.log(res);
 };
 
-let res = triangularSum((nums = [1, 2, 3, 4, 5]));
-console.log(res);
+numWaterBottles((numBottles = 15), (numExchange = 4));
