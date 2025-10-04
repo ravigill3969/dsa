@@ -1,55 +1,33 @@
-// Node definition
-class TreeNode {
-  constructor(val) {
-    this.val = val;
-    this.left = null;
-    this.right = null;
-  }
-}
-
-// Build binary tree from array (level-order)
-function buildTree(arr, index = 0) {
-  if (index >= arr.length || arr[index] === null) return null;
-
-  let root = new TreeNode(arr[index]);
-  root.left = buildTree(arr, 2 * index + 1);
-  root.right = buildTree(arr, 2 * index + 2);
-
-  return root;
-}
-
-// Example usage
-let arr = [3, 1, 4, 3, null, 1, 5];
-let root = buildTree(arr);
-
 /**
- * @param {TreeNode} root
+ * @param {number[]} fruits
  * @return {number}
  */
-var goodNodes = function (root) {
-  let res = 0;
-  if (!root) return res;
+var totalFruit = function (fruits) {
+  let map = new Map();
+  let max = 0;
 
-  function rec(node, curMax) {
-    if (node.val >= curMax) {
-      res++;
+  let i = 0;
+  let j = 0;
+
+  while (i < fruits.length) {
+    map.set(fruits[i], (map.get(fruits[i]) || 0) + 1);
+
+    while (map.size > 2) {
+      map.set(fruits[j], map.get(fruits[j]) - 1);
+
+      if (map.get(fruits[j]) <= 0) {
+        map.delete(fruits[j]);
+      }
+      j++;
     }
 
-    curMax = Math.max(curMax, node.val);
+    max = Math.max(max, i - j + 1);
 
-    if (node.left) {
-      rec(node.left, curMax);
-    }
-    if (node.right) {
-      rec(node.right, curMax);
-    }
+    i++;
   }
 
-  rec(root, -Infinity);
-
-  return res;
+  return max;
 };
 
-let res = goodNodes(root);
-
+let res = totalFruit((fruits = [1, 2, 3, 2, 2]));
 console.log(res);
