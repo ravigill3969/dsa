@@ -18,7 +18,7 @@ function arrayToList(arr) {
   return head;
 }
 
-let l1 = arrayToList([2, 4, 3]);
+let l1 = arrayToList([1, 2, 3, 4, 5]);
 let l2 = arrayToList([5, 6, 4]);
 
 /**
@@ -26,47 +26,37 @@ let l2 = arrayToList([5, 6, 4]);
  * @param {ListNode} l2
  * @return {ListNode}
  */
-var addTwoNumbers = function (l1, l2) {
-  if (l1 === null) return l2;
-  if (l2 === null) return l1;
+var removeNthFromEnd = function (head, n) {
+  let len = 0;
 
-  let carry = 0;
+  let list = head;
 
-  let list = new ListNode(null);
+  while (list) {
+    len++;
 
-  let r = list;
-
-  while (l1 != null || l2 != null) {
-    let l1val = 0;
-    let l2val = 0;
-
-    if (l1) {
-      l1val = l1.val;
-    }
-
-    if (l2) {
-      l2val = l2.val;
-    }
-
-    let sum = l1val + l2val + carry;
-
-    if (sum > 9) {
-      carry = 1;
-    } else {
-      carry = 0;
-    }
-
-    r.next = new ListNode(sum % 10);
-    r = r.next;
-    l1 = l1 && l1.next ? l1.next : null;
-    l2 = l2 && l2.next ? l2.next : null;
+    list = list.next;
   }
 
-  if (carry > 0) {
-    r.next = new ListNode(carry);
+  if (n === len) {
+    return head.next;
   }
 
-  return list.next;
+  let target = len - n - 1;
+
+  let m = head;
+
+  while (m && target > 0) {
+    target--;
+    m = m.next;
+  }
+
+  if (m && m.next) {
+    m.next = m.next.next;
+  }
+  
+  console.log(JSON.stringify(head));
+
+  return head;
 };
 
-addTwoNumbers(l1, l2);
+removeNthFromEnd(l1, 2);
