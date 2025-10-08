@@ -18,45 +18,39 @@ function arrayToList(arr) {
   return head;
 }
 
-let l1 = arrayToList([1, 2, 3, 4, 5]);
+let l1 = arrayToList([1, 2, 3, 4]);
 let l2 = arrayToList([5, 6, 4]);
-
 /**
- * @param {ListNode} l1
- * @param {ListNode} l2
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
  * @return {ListNode}
  */
-var removeNthFromEnd = function (head, n) {
-  let len = 0;
+var swapPairs = function (head) {
+  if (!head || !head.next) return head;
 
-  let list = head;
+  let dummy = new ListNode(0, head);
+  let r = dummy;
 
-  while (list) {
-    len++;
+  while (r.next && r.next.next) {
+    let firstNode = r.next;
+    let secondNode = r.next.next;
+    let restOfList = secondNode.next;
 
-    list = list.next;
+    r.next = secondNode;
+    secondNode.next = firstNode;
+    firstNode.next = restOfList;
+
+    r = firstNode;
   }
 
-  if (n === len) {
-    return head.next;
-  }
-
-  let target = len - n - 1;
-
-  let m = head;
-
-  while (m && target > 0) {
-    target--;
-    m = m.next;
-  }
-
-  if (m && m.next) {
-    m.next = m.next.next;
-  }
-  
-  console.log(JSON.stringify(head));
-
-  return head;
+  console.log(JSON.stringify(dummy));
+  return dummy.next;
 };
 
-removeNthFromEnd(l1, 2);
+swapPairs(l1);
