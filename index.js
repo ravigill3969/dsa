@@ -1,31 +1,59 @@
-var successfulPairs = function (spells, potions, success) {
-  potions.sort((a, b) => a - b);
-  let res = [];
+function ListNode(val, next) {
+  this.val = val ?? 0;
+  this.next = next ?? null;
+}
 
-  let s = 0;
-  while (s < spells.length) {
-    let currentSpell = spells[s];
-    let l = 0;
-    let r = potions.length - 1;
-    let index = potions.length; // default: no valid potion
+function arrayToList(arr) {
+  let dummy = new ListNode();
+  let curr = dummy;
+  for (let v of arr) {
+    curr.next = new ListNode(v);
+    curr = curr.next;
+  }
+  return dummy.next;
+}
 
-    // binary search for first potion that succeeds
-    while (l <= r) {
-      let mid = Math.floor((l + r) / 2);
-      let product = currentSpell * potions[mid];
+let head = arrayToList([1, 2, 2]);
 
-      if (product >= success) {
-        index = mid;
-        r = mid - 1; // try to find an earlier one
-      } else {
-        l = mid + 1;
-      }
-    }
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var deleteDuplicates = function (head) {
+  let map = new Map();
 
-    // all potions from 'index' to end are successful
-    res.push(potions.length - index);
-    s++;
+  let c = head;
+
+  while (c) {
+    map.set(c.val, (map.get(c.val) || 0) + 1);
+
+    c = c.next;
   }
 
-  return res;
+  let res = new ListNode(0);
+  let attacher = res;
+  c = head;
+
+  while (c) {
+    if (map.get(c.val) != 1) {
+      c = c.next;
+      continue;
+    }
+
+    attacher.next = new ListNode(c.val);
+    attacher = attacher.next;
+    c = c.next;
+  }
+
+  console.log(JSON.stringify(res));
+  return res.next;
 };
+
+deleteDuplicates(head);
