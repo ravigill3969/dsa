@@ -1,59 +1,21 @@
-function ListNode(val, next) {
-  this.val = val ?? 0;
-  this.next = next ?? null;
-}
-
-function arrayToList(arr) {
-  let dummy = new ListNode();
-  let curr = dummy;
-  for (let v of arr) {
-    curr.next = new ListNode(v);
-    curr = curr.next;
-  }
-  return dummy.next;
-}
-
-let head = arrayToList([1, 2, 2]);
-
 /**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
+ * @param {number[]} coins
+ * @param {number} amount
+ * @return {number}
  */
-/**
- * @param {ListNode} head
- * @return {ListNode}
- */
-var deleteDuplicates = function (head) {
-  let map = new Map();
-
-  let c = head;
-
-  while (c) {
-    map.set(c.val, (map.get(c.val) || 0) + 1);
-
-    c = c.next;
-  }
-
-  let res = new ListNode(0);
-  let attacher = res;
-  c = head;
-
-  while (c) {
-    if (map.get(c.val) != 1) {
-      c = c.next;
-      continue;
+var coinChange = function (coins, amount) {
+  let arr = new Array(amount + 1).fill(Infinity);
+  arr[0] = 0;
+  for (let coin of coins) {
+    for (let a = 0; a <= amount; a++) {
+      let diff = a - coin;
+      if (diff > 0) {
+        arr[a] = Math.min(arr[a], arr[a - coin] + 1);
+      }
     }
-
-    attacher.next = new ListNode(c.val);
-    attacher = attacher.next;
-    c = c.next;
   }
 
-  console.log(JSON.stringify(res));
-  return res.next;
+  return arr[amount] === Infinity ? -1 : arr[amount];
 };
 
-deleteDuplicates(head);
+coinChange((coins = [1, 2, 5]), (amount = 11));
