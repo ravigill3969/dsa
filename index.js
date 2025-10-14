@@ -1,30 +1,31 @@
 /**
- * @param {number[][]} triangle
+ * @param {number[][]} grid
  * @return {number}
  */
-var minimumTotal = function (triangle) {
-
-    if(triangle.length === 1) return triangle[0][0]
-
-  let dp = [];
-
-  for (let i = 0; i < triangle.length; i++) {
-    dp.push(new Array(triangle[i].length).fill(null));
+var minPathSum = function (grid) {
+  for (let i = 1; i < grid[0].length; i++) {
+    grid[0][i] = grid[0][i] + grid[0][i - 1];
   }
 
-  function dfs(i, j) {
-    if (j > triangle[i].length - 1) return 0;
-
-    if (i === triangle.length - 1) return triangle[i][j];
-
-    dp[i][j] = triangle[i][j] + Math.min(dfs(i + 1, j), dfs(i + 1, j + 1));
-
-    return dp[i][j];
+  for (let i = 1; i < grid.length; i++) {
+    grid[i][0] = grid[i - 1][0] + grid[i][0];
   }
 
-  dfs(0, 0);
+  for (let i = 1; i < grid.length; i++) {
+    for (let j = 1; j < grid[0].length; j++) {
+      grid[i][j] += Math.min(grid[i - 1][j], grid[i][j - 1]);
+    }
+  }
 
-  return dp[0][0];
+  return grid[grid.length - 1][grid[0].length - 1];
 };
 
-minimumTotal((triangle = [[2], [3, 4], [6, 5, 7], [4, 1, 8, 3]]));
+let res = minPathSum(
+  (grid = [
+    [1, 3, 1],
+    [1, 5, 1],
+    [4, 2, 1],
+  ])
+);
+
+console.log(res);
