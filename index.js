@@ -1,23 +1,19 @@
 /**
+ * @param {number} m
  * @param {number} n
  * @return {number}
  */
-var tribonacci = function (n) {
-  let f = 0;
-  let s = 1;
-  let t = 1;
+var uniquePaths = function (m, n) {
+  let arr = new Array(n).fill(1);
 
-  n = n - 2;
-  while (n > 0) {
-    let sum = f + s + t;
-    f = s;
-    s = t;
-    t = sum;
-    n--;
+  for (let i = 1; i < m; i++) {
+    let newArr = new Array(n).fill(1);
+    for (let j = 1; j < n; j++) {
+      newArr[j] = newArr[j - 1] + arr[j];
+    }
+    arr = newArr;
   }
-
-  console.log(t);
+  return arr[arr.length - 1];
 };
 
-let res = tribonacci((n = 4));
-console.log(res);
+uniquePaths((m = 3), (n = 7));
