@@ -1,43 +1,49 @@
 /**
- * @param {number[]} nums
- * @return {boolean}
+ * @param {string} s
+ * @return {number}
  */
-var canPartition = function (nums) {
-  let total = 0;
-  for (let n of nums) {
-    total += n;
-  }
-
-  // If total sum is odd, can't split evenly
-  if (total % 2 !== 0) return false;
-
-  const target = total / 2;
-
+var longestPalindromeSubseq = function (s) {
   let map = new Map();
+  const seen = new Map();
+
+  let max = -Infinity;
 
   function dfs(i, cs) {
-    if (cs === target) return true;
+    if (i >= s.length) {
+      if (p(cs)) {
+        max = Math.max(max, cs.length);
+      }
+      return;
+    }
+    if (i >= s.length) return 0;
 
-    if (i >= nums.length || cs > target) return false;
+    const key = i + "-" + cs;
+    if (seen.has(key)) return;
+    seen.set(key, true);
 
-    let key = `${i}-${cs}`;
-
-    if (map.has(key)) return map.get(key);
-
-    const addCurrentNumberFromAdding = dfs(i + 1, cs + nums[i]);
-    const skipCurrentNumberFromAdding = dfs(i + 1, cs);
-
-    let res = addCurrentNumberFromAdding || skipCurrentNumberFromAdding;
-    console.log(key, res);
-    map.set(key, res);
-
-    return res;
+    dfs(i + 1, cs + s[i]);
+    dfs(i + 1, cs);
   }
 
-  return dfs(0, 0);
+  dfs(0, "");
+
+  console.log(max);
 };
 
-let res = canPartition([1, 5, 11, 5]);
-console.log(res);
-res = canPartition([1, 2, 3, 5]);
-console.log(res);
+function p(s) {
+  let l = 0;
+  let r = s.length - 1;
+
+  while (l < r) {
+    if (s[r] != s[l]) {
+      return false;
+    }
+
+    r--;
+    l++;
+  }
+
+  return true;
+}
+
+longestPalindromeSubseq((s = "bbbab"));
