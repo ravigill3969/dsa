@@ -5,26 +5,19 @@ Perfect — here’s your **dynamic programming mastery roadmap**, now upgraded 
 
 ## 🧩 **Level 1 – 1D DP Basics**
 
-| Problem                                  | Link                                                                     |
-| ---------------------------------------- | ------------------------------------------------------------------------ |
-| 🧗‍♂️ Climbing Stairs                    | [LeetCode #70](https://leetcode.com/problems/climbing-stairs/)           |
-| 🏠 House Robber I                        | [LeetCode #198](https://leetcode.com/problems/house-robber/)             |
-| 💥 Maximum Subarray (Kadane’s Algorithm) | [LeetCode #53](https://leetcode.com/problems/maximum-subarray/)          |
-| 💸 Min Cost Climbing Stairs              | [LeetCode #746](https://leetcode.com/problems/min-cost-climbing-stairs/) |
-| 🔢 Nth Tribonacci Number                 | [LeetCode #1137](https://leetcode.com/problems/n-th-tribonacci-number/)  |
-| 🔐 Decode Ways                           | [LeetCode #91](https://leetcode.com/problems/decode-ways/)               |
+| Problem                     | Link                                                                     |
+| --------------------------- | ------------------------------------------------------------------------ |
+| 💸 Min Cost Climbing Stairs | [LeetCode #746](https://leetcode.com/problems/min-cost-climbing-stairs/) |
+| 🔐 Decode Ways              | [LeetCode #91](https://leetcode.com/problems/decode-ways/)               |
 
 ---
 
 ## 🧱 **Level 2 – 2D DP (Grid / Matrix Problems)**
 
-| Problem                   | Link                                                            |
-| ------------------------- | --------------------------------------------------------------- |
-| 🚶 Unique Paths           | [LeetCode #62](https://leetcode.com/problems/unique-paths/)     |
-| 💰 Minimum Path Sum       | [LeetCode #64](https://leetcode.com/problems/minimum-path-sum/) |
-| 🔺 Triangle Minimum Total | [LeetCode #120](https://leetcode.com/problems/triangle/)        |
-| ⚔️ Dungeon Game           | [LeetCode #174](https://leetcode.com/problems/dungeon-game/)    |
-| 🟦 Maximal Square         | [LeetCode #221](https://leetcode.com/problems/maximal-square/)  |
+| Problem           | Link                                                           |
+| ----------------- | -------------------------------------------------------------- |
+| ⚔️ Dungeon Game   | [LeetCode #174](https://leetcode.com/problems/dungeon-game/)   |
+| 🟦 Maximal Square | [LeetCode #221](https://leetcode.com/problems/maximal-square/) |
 
 ---
 
@@ -32,8 +25,6 @@ Perfect — here’s your **dynamic programming mastery roadmap**, now upgraded 
 
 | Problem                        | Link                                                                       |
 | ------------------------------ | -------------------------------------------------------------------------- |
-| 💰 Coin Change (Min Coins)     | [LeetCode #322](https://leetcode.com/problems/coin-change/)                |
-| 🪙 Coin Change II (Count Ways) | [LeetCode #518](https://leetcode.com/problems/coin-change-ii/)             |
 | 🎯 Target Sum                  | [LeetCode #494](https://leetcode.com/problems/target-sum/)                 |
 | 🧮 Combination Sum IV          | [LeetCode #377](https://leetcode.com/problems/combination-sum-iv/)         |
 | ⚖️ Partition Equal Subset Sum  | [LeetCode #416](https://leetcode.com/problems/partition-equal-subset-sum/) |

@@ -1,31 +1,43 @@
 /**
- * @param {number[][]} grid
- * @return {number}
+ * @param {number[]} nums
+ * @return {boolean}
  */
-var minPathSum = function (grid) {
-  for (let i = 1; i < grid[0].length; i++) {
-    grid[0][i] = grid[0][i] + grid[0][i - 1];
+var canPartition = function (nums) {
+  let total = 0;
+  for (let n of nums) {
+    total += n;
   }
 
-  for (let i = 1; i < grid.length; i++) {
-    grid[i][0] = grid[i - 1][0] + grid[i][0];
+  // If total sum is odd, can't split evenly
+  if (total % 2 !== 0) return false;
+
+  const target = total / 2;
+
+  let map = new Map();
+
+  function dfs(i, cs) {
+    if (cs === target) return true;
+
+    if (i >= nums.length || cs > target) return false;
+
+    let key = `${i}-${cs}`;
+
+    if (map.has(key)) return map.get(key);
+
+    const addCurrentNumberFromAdding = dfs(i + 1, cs + nums[i]);
+    const skipCurrentNumberFromAdding = dfs(i + 1, cs);
+
+    let res = addCurrentNumberFromAdding || skipCurrentNumberFromAdding;
+    console.log(key, res);
+    map.set(key, res);
+
+    return res;
   }
 
-  for (let i = 1; i < grid.length; i++) {
-    for (let j = 1; j < grid[0].length; j++) {
-      grid[i][j] += Math.min(grid[i - 1][j], grid[i][j - 1]);
-    }
-  }
-
-  return grid[grid.length - 1][grid[0].length - 1];
+  return dfs(0, 0);
 };
 
-let res = minPathSum(
-  (grid = [
-    [1, 3, 1],
-    [1, 5, 1],
-    [4, 2, 1],
-  ])
-);
-
+let res = canPartition([1, 5, 11, 5]);
+console.log(res);
+res = canPartition([1, 2, 3, 5]);
 console.log(res);
