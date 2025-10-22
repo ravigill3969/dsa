@@ -1,91 +1,72 @@
-Perfect — here’s your **dynamic programming mastery roadmap**, now upgraded with **direct LeetCode links** 🔗
-(I’ve grouped them by category and progression level so you can learn in order.)
+Perfect ⚔️ — here’s a **focused list of medium-level Sliding Window problems** from LeetCode.
+These are the core “real interview” challenges that test your reasoning, not just pattern recognition.
+
+I’ve grouped them by **concept type** so you can master them strategically.
 
 ---
 
-## 🧩 **Level 1 – 1D DP Basics**
+## 🧩 **LeetCode Medium — Sliding Window Problems**
 
-| Problem                     | Link                                                                     |
-| --------------------------- | ------------------------------------------------------------------------ |
-| 💸 Min Cost Climbing Stairs | [LeetCode #746](https://leetcode.com/problems/min-cost-climbing-stairs/) |
-| 🔐 Decode Ways              | [LeetCode #91](https://leetcode.com/problems/decode-ways/)               |
+### 🔠 **Strings & Character Frequency**
 
----
-
-## 🧱 **Level 2 – 2D DP (Grid / Matrix Problems)**
-
-| Problem           | Link                                                           |
-| ----------------- | -------------------------------------------------------------- |
-| ⚔️ Dungeon Game   | [LeetCode #174](https://leetcode.com/problems/dungeon-game/)   |
-| 🟦 Maximal Square | [LeetCode #221](https://leetcode.com/problems/maximal-square/) |
+| #       | Problem                                                                                                                         | Core Idea                                                       |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| **3**   | [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/) | Move left pointer when duplicate appears (map of last index).   |
+| **567** | [Permutation in String](https://leetcode.com/problems/permutation-in-string/)                                                   | Compare frequency of chars in current window to target.         |
+| **438** | [Find All Anagrams in a String](https://leetcode.com/problems/find-all-anagrams-in-a-string/)                                   | Sliding character count with window size = pattern length.      |
+| **424** | [Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)               | Track most frequent char to decide when to shrink.              |
+| **76**  | [Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)                                             | Classic — dynamic window shrinking, character deficit tracking. |
 
 ---
 
-## 🧠 **Level 3 – Combinatorial / Counting DP**
+### 🔢 **Arrays & Numeric Windows**
 
-| Problem                        | Link                                                                       |
-| ------------------------------ | -------------------------------------------------------------------------- |
-| 🎯 Target Sum                  | [LeetCode #494](https://leetcode.com/problems/target-sum/)                 |
-| 🧮 Combination Sum IV          | [LeetCode #377](https://leetcode.com/problems/combination-sum-iv/)         |
-| ⚖️ Partition Equal Subset Sum  | [LeetCode #416](https://leetcode.com/problems/partition-equal-subset-sum/) |
-
----
-
-## 🔤 **Level 4 – String DP**
-
-| Problem                            | Link                                                                            |
-| ---------------------------------- | ------------------------------------------------------------------------------- |
-| 🔡 Longest Common Subsequence      | [LeetCode #1143](https://leetcode.com/problems/longest-common-subsequence/)     |
-| 💎 Longest Palindromic Subsequence | [LeetCode #516](https://leetcode.com/problems/longest-palindromic-subsequence/) |
-| 🪞 Longest Palindromic Substring   | [LeetCode #5](https://leetcode.com/problems/longest-palindromic-substring/)     |
-| ✏️ Edit Distance                   | [LeetCode #72](https://leetcode.com/problems/edit-distance/)                    |
-| 🔠 Distinct Subsequences           | [LeetCode #115](https://leetcode.com/problems/distinct-subsequences/)           |
-| 🔍 Regular Expression Matching     | [LeetCode #10](https://leetcode.com/problems/regular-expression-matching/)      |
+| #        | Problem                                                                                                                                | Core Idea                                                       |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| **209**  | [Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/)                                                  | Shrink window when sum ≥ target, track min length.              |
+| **713**  | [Subarray Product Less Than K](https://leetcode.com/problems/subarray-product-less-than-k/)                                            | Multiply and divide window product; count valid subarrays.      |
+| **1004** | [Max Consecutive Ones III](https://leetcode.com/problems/max-consecutive-ones-iii/)                                                    | At most `k` flips → window with constraint.                     |
+| **1208** | [Get Equal Substrings Within Budget](https://leetcode.com/problems/get-equal-substrings-within-budget/)                                | Maintain running cost (sum of differences), shrink if > budget. |
+| **1493** | [Longest Subarray of 1’s After Deleting One Element](https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/) | Window with 1 allowed zero.                                     |
 
 ---
 
-## 📈 **Level 5 – Interval / Partition DP**
+### 🧠 **Advanced & Trickier Logic**
 
-| Problem                                              | Link                                                                                              |
-| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| 🎈 Burst Balloons                                    | [LeetCode #312](https://leetcode.com/problems/burst-balloons/)                                    |
-| 🧮 Matrix Chain Multiplication (analogous custom DP) | [GFG Problem Link](https://practice.geeksforgeeks.org/problems/matrix-chain-multiplication0303/1) |
-| ✂️ Palindrome Partitioning II (Min Cuts)             | [LeetCode #132](https://leetcode.com/problems/palindrome-partitioning-ii/)                        |
-| 🔺 Minimum Score Triangulation of Polygon            | [LeetCode #1039](https://leetcode.com/problems/minimum-score-triangulation-of-polygon/)           |
-| 🪨 Stone Game II                                     | [LeetCode #1140](https://leetcode.com/problems/stone-game-ii/)                                    |
-| 🪨 Stone Game III                                    | [LeetCode #1406](https://leetcode.com/problems/stone-game-iii/)                                   |
-
----
-
-## 💰 **Level 6 – Advanced / Optimization DP**
-
-| Problem                               | Link                                                                                                      |
-| ------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| 🎒 0/1 Knapsack                       | [GFG 0/1 Knapsack](https://practice.geeksforgeeks.org/problems/0-1-knapsack-problem0945/1)                |
-| 💼 Unbounded Knapsack                 | [GFG Unbounded Knapsack](https://practice.geeksforgeeks.org/problems/knapsack-with-duplicate-items4201/1) |
-| 🕐 Job Scheduling with Profits        | [LeetCode #1235](https://leetcode.com/problems/maximum-profit-in-job-scheduling/)                         |
-| 🧩 Word Break I                       | [LeetCode #139](https://leetcode.com/problems/word-break/)                                                |
-| 🧩 Word Break II                      | [LeetCode #140](https://leetcode.com/problems/word-break-ii/)                                             |
-| 🧧 Russian Doll Envelopes             | [LeetCode #354](https://leetcode.com/problems/russian-doll-envelopes/)                                    |
-| 💹 Stock Buy/Sell I                   | [LeetCode #121](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)                           |
-| 💹 Stock Buy/Sell II                  | [LeetCode #122](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)                        |
-| 💹 Stock Buy/Sell with Cooldown       | [LeetCode #309](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)             |
-| 💹 Stock Buy/Sell with Fee            | [LeetCode #714](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/)      |
-| 💹 Stock Buy/Sell IV (k transactions) | [LeetCode #188](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/)                        |
+| #        | Problem                                                                                                                                   | Core Idea                                                            |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| **930**  | [Binary Subarrays With Sum](https://leetcode.com/problems/binary-subarrays-with-sum/)                                                     | Count subarrays with exactly `goal` using prefix-sum + window trick. |
+| **992**  | [Subarrays with K Different Integers](https://leetcode.com/problems/subarrays-with-k-different-integers/)                                 | “Exactly K” = atMost(K) – atMost(K-1). Two-pointer mastery.          |
+| **2958** | [Length of Longest Subarray With at Most K Frequency](https://leetcode.com/problems/length-of-longest-subarray-with-at-most-k-frequency/) | Map counting frequency, shrink when count exceeds K.                 |
+| **1658** | [Minimum Operations to Reduce X to Zero](https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/)                           | Transform into longest subarray with sum = total − x.                |
+| **1838** | [Frequency of the Most Frequent Element](https://leetcode.com/problems/frequency-of-the-most-frequent-element/)                           | Sort + sliding window sum to maximize equal numbers via increments.  |
 
 ---
 
-## 🔁 **Transition / Hybrid Problems**
+### ⚙️ **Bonus Challenge Tier**
 
-| Problem                                 | Link                                                                           |
-| --------------------------------------- | ------------------------------------------------------------------------------ |
-| 🏠 House Robber II (Circular)           | [LeetCode #213](https://leetcode.com/problems/house-robber-ii/)                |
-| 🪂 Jump Game I                          | [LeetCode #55](https://leetcode.com/problems/jump-game/)                       |
-| 🪂 Jump Game II                         | [LeetCode #45](https://leetcode.com/problems/jump-game-ii/)                    |
-| 📈 Longest Increasing Subsequence (LIS) | [LeetCode #300](https://leetcode.com/problems/longest-increasing-subsequence/) |
-| 🧠 Coin Path / Minimum Jumps            | [LeetCode #656](https://leetcode.com/problems/coin-path/)                      |
+Once comfortable with the above, try these hybrid/edge ones:
+
+| #        | Problem                                                                                                             | Core Idea                                         |
+| -------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| **1052** | [Grumpy Bookstore Owner](https://leetcode.com/problems/grumpy-bookstore-owner/)                                     | Fixed window overlayed with base sum.             |
+| **1423** | [Maximum Points You Can Obtain from Cards](https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/) | Convert to “minimum subarray to remove” problem.  |
+| **2090** | [K Radius Subarray Averages](https://leetcode.com/problems/k-radius-subarray-averages/)                             | Running sum + sliding window average computation. |
 
 ---
 
-Would you like me to generate this same list as a **Markdown cheatsheet file (`DP_Roadmap.md`)** you can keep in your repo — with topics, links, and checkboxes to track progress ✅?
-That way you can literally use it as your “DP Mastery Tracker.”
+### 🧭 Recommended Study Path (for Medium level)
+
+| Day | Focus                  | Problems   |
+| --- | ---------------------- | ---------- |
+| 1️⃣  | Basic window motion    | 3, 209     |
+| 2️⃣  | Character frequency    | 424, 438   |
+| 3️⃣  | Window shrinking logic | 76, 567    |
+| 4️⃣  | Numeric windows        | 713, 1004  |
+| 5️⃣  | Constraint windows     | 1208, 1493 |
+| 6️⃣  | Advanced counting      | 992, 930   |
+| 7️⃣  | Challenge day          | 1658, 1838 |
+
+---
+
+Would you like me to create a **visual cheat sheet** (with window type, when to move left/right, and common patterns like “expand–shrink” and “count map”)? It’s an awesome 1-page summary for window problems.

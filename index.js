@@ -1,49 +1,35 @@
 /**
- * @param {string} s
+ * @param {number[]} cardPoints
+ * @param {number} k
  * @return {number}
  */
-var longestPalindromeSubseq = function (s) {
-  let map = new Map();
-  const seen = new Map();
+var maxScore = function (cardPoints, k) {
+  let total = 0;
 
-  let max = -Infinity;
-
-  function dfs(i, cs) {
-    if (i >= s.length) {
-      if (p(cs)) {
-        max = Math.max(max, cs.length);
-      }
-      return;
-    }
-    if (i >= s.length) return 0;
-
-    const key = i + "-" + cs;
-    if (seen.has(key)) return;
-    seen.set(key, true);
-
-    dfs(i + 1, cs + s[i]);
-    dfs(i + 1, cs);
+  for (let n of cardPoints) {
+    total += n;
   }
 
-  dfs(0, "");
+  let l = 0;
+  let windowLength = cardPoints.length - k;
 
-  console.log(max);
+  let res = -Infinity;
+  let sum = 0;
+  for (let r = 0; r < cardPoints.length; r++) {
+    sum += cardPoints[r];
+
+    if (r - l + 1 > windowLength) {
+      sum -= cardPoints[l];
+      l++;
+    }
+
+    if (r - l + 1 === windowLength) {
+      res = Math.max(res, total - sum);
+    }
+  }
+
+  return res;
 };
 
-function p(s) {
-  let l = 0;
-  let r = s.length - 1;
-
-  while (l < r) {
-    if (s[r] != s[l]) {
-      return false;
-    }
-
-    r--;
-    l++;
-  }
-
-  return true;
-}
-
-longestPalindromeSubseq((s = "bbbab"));
+let res = maxScore((cardPoints = [1, 2, 3, 4, 5, 6, 1]), (k = 3));
+console.log(res);
