@@ -6,7 +6,6 @@ Perfect — here’s the **full list of all the stack + sliding window LeetCode 
 
 | #   | Problem                          | Link                                                                                                                         | Core Idea                                              |
 | --- | -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| 739 | Daily Temperatures               | [🔗 leetcode.com/problems/daily-temperatures](https://leetcode.com/problems/daily-temperatures/)                             | Monotonic stack to find next warmer day                |
 | 503 | Next Greater Element II          | [🔗 leetcode.com/problems/next-greater-element-ii](https://leetcode.com/problems/next-greater-element-ii/)                   | Circular array next greater using stack                |
 | 394 | Decode String                    | [🔗 leetcode.com/problems/decode-string](https://leetcode.com/problems/decode-string/)                                       | Stack handles nested brackets + multipliers            |
 | 856 | Score of Parentheses             | [🔗 leetcode.com/problems/score-of-parentheses](https://leetcode.com/problems/score-of-parentheses/)                         | Stack balance scoring based on depth                   |
