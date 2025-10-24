@@ -1,25 +1,36 @@
 /**
- * @param {number[]} temperatures
- * @return {number[]}
+ * @param {string} s
+ * @return {string}
  */
-var dailyTemperatures = function (temperatures) {
-  let res = new Array(temperatures.length).fill(0);
-  let stack = [0];
+var decodeString = function (s) {
+  let numStack = [];
+  let strStack = [];
 
-  for (let i = 1; i < temperatures.length; i++) {
+  let curStr = "";
+  let num = 0;
 
-    while(stack.length > 0 && temperatures[i] > temperatures[stack.length - 1]){
-      let index = stack.pop()
-      res[index] = i - index
+  for (let i = 0; i < s.length; i++) {
+    const ch = s[i];
+
+    if (!isNaN(Number(s[i]))) {
+      num = num * 10 + Number(s[i]);
+    } else if (s[i] === "[") {
+      numStack.push(num);
+      strStack.push(curStr);
+
+      num = 0;
+      curStr = "";
+    } else if (s[i] === "]") {
+      let repeatTimes = numStack.pop();
+      let prevStr = strStack.pop();
+      curStr = prevStr + curStr.repeat(repeatTimes);
+    } else {
+      curStr = curStr + ch;
     }
-    
-    stack.push(i)
-   
-
   }
 
-  return res
+  console.log(curStr);
 };
 
-let res = dailyTemperatures((temperatures = [73, 74, 75, 71, 69, 72, 76, 73]));
+let res = decodeString((s = "3[a]2[bc]"));
 console.log(res);
