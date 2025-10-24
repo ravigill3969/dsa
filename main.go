@@ -12,13 +12,13 @@ func main() {
 func scoreOfParentheses(s string) int {
 	res := 0
 
-	var stack []byte
+	// var stack []byte
 
-	for i := 0; i < len(s); i++ {
-		if s[i] == "" {
+	// for i := 0; i < len(s); i++ {
+	// 	if s[i] == "" {
 
-		}
-	}
+	// 	}
+	// }
 
 	return res
 }

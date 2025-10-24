@@ -1,36 +1,41 @@
 /**
- * @param {string} s
- * @return {string}
+ * @param {string[]} tokens
+ * @return {number}
  */
-var decodeString = function (s) {
-  let numStack = [];
-  let strStack = [];
+var evalRPN = function (tokens) {
+  let stack = [];
+  let s = tokens;
 
-  let curStr = "";
-  let num = 0;
+  for (let i = 0; i < tokens.length; i++) {
+    console.log(stack)
+    if (s[i] === "+") {
+      let add = stack.pop() + stack.pop();
+      stack.push(add);
+    } else if (s[i] === "/") {
+      let n2 = stack.pop();
+      let n1 = stack.pop();
 
-  for (let i = 0; i < s.length; i++) {
-    const ch = s[i];
+      let a = Math.trunc(n1 / n2);
+      stack.push(a);
+    } else if (s[i] === "*") {
+      let n2 = stack.pop();
+      let n1 = stack.pop();
 
-    if (!isNaN(Number(s[i]))) {
-      num = num * 10 + Number(s[i]);
-    } else if (s[i] === "[") {
-      numStack.push(num);
-      strStack.push(curStr);
+      let p = n2 * n1;
+      stack.push(p);
+    } else if (s[i] === "-") {
+      let n2 = stack.pop();
+      let n1 = stack.pop();
 
-      num = 0;
-      curStr = "";
-    } else if (s[i] === "]") {
-      let repeatTimes = numStack.pop();
-      let prevStr = strStack.pop();
-      curStr = prevStr + curStr.repeat(repeatTimes);
+      let p = n2 - n1;
+      stack.push(p);
     } else {
-      curStr = curStr + ch;
+      stack.push(Number(s[i]));
     }
   }
 
-  console.log(curStr);
+  return stack[0];
 };
 
-let res = decodeString((s = "3[a]2[bc]"));
+let res = evalRPN((tokens = ["4","13","5","/","+"]));
 console.log(res);
