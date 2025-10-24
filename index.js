@@ -1,41 +1,34 @@
 /**
- * @param {string[]} tokens
- * @return {number}
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
  */
-var evalRPN = function (tokens) {
-  let stack = [];
-  let s = tokens;
+var maxSlidingWindow = function (nums, k) {
+  let res = [];
+  let que = [];
+  let r = 0;
+  let l = 0;
 
-  for (let i = 0; i < tokens.length; i++) {
-    console.log(stack)
-    if (s[i] === "+") {
-      let add = stack.pop() + stack.pop();
-      stack.push(add);
-    } else if (s[i] === "/") {
-      let n2 = stack.pop();
-      let n1 = stack.pop();
-
-      let a = Math.trunc(n1 / n2);
-      stack.push(a);
-    } else if (s[i] === "*") {
-      let n2 = stack.pop();
-      let n1 = stack.pop();
-
-      let p = n2 * n1;
-      stack.push(p);
-    } else if (s[i] === "-") {
-      let n2 = stack.pop();
-      let n1 = stack.pop();
-
-      let p = n2 - n1;
-      stack.push(p);
-    } else {
-      stack.push(Number(s[i]));
+  while (r < nums.length) {
+    while (que.length > 0 && nums[que[que.length - 1]] < nums[r]) {
+      que.pop();
     }
+    que.push(r);
+
+    if (l > que[0]) {
+      que.shift();
+    }
+
+    while (r -l+ 1 >= k) {
+      res.push(nums[que[0]]);
+      l++;
+    }
+
+    r++;
   }
 
-  return stack[0];
+  console.log(res);
+  return res
 };
 
-let res = evalRPN((tokens = ["4","13","5","/","+"]));
-console.log(res);
+maxSlidingWindow((nums = [1, 3, -1, -3, 5, 3, 6, 7]), (k = 3));
