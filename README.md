@@ -1,47 +1,56 @@
-Got it ✅ — here are **direct HTTP/HTTPS links** to _all_ the stack-heavy LeetCode problems I mentioned earlier (in proper URL format, no tracking params):
+🧱 Level 1 — Core Basics
+#	Problem Name	Link	Difficulty
+1	Next Greater Element I	🔗 https://leetcode.com/problems/next-greater-element-i/
+	Easy
+2	Next Greater Element II	🔗 https://leetcode.com/problems/next-greater-element-ii/
+	Medium
+3	Next Smaller Element (GeeksforGeeks)	🔗 https://www.geeksforgeeks.org/next-smaller-element/
+	Easy
 
----
 
-### 🧩 Monotonic Stack / Range Problems
+⚙️ Level 2 — Counting / Window Problems
+#	Problem Name	Link	Difficulty
+4	Daily Temperatures	🔗 https://leetcode.com/problems/daily-temperatures/
+	Medium
+<!-- 5	Online Stock Span	🔗 https://leetcode.com/problems/online-stock-span/
+	Medium -->
 
-1. **Trapping Rain Water** – [https://leetcode.com/problems/trapping-rain-water/](https://leetcode.com/problems/trapping-rain-water/)
-2. **Largest Rectangle in Histogram** – [https://leetcode.com/problems/largest-rectangle-in-histogram/](https://leetcode.com/problems/largest-rectangle-in-histogram/)
-3. **Maximal Rectangle** – [https://leetcode.com/problems/maximal-rectangle/](https://leetcode.com/problems/maximal-rectangle/)
-4. **Sum of Subarray Minimums** – [https://leetcode.com/problems/sum-of-subarray-minimums/](https://leetcode.com/problems/sum-of-subarray-minimums/)
-5. **Sum of Subarray Ranges** – [https://leetcode.com/problems/sum-of-subarray-ranges/](https://leetcode.com/problems/sum-of-subarray-ranges/)
-6. **132 Pattern** – [https://leetcode.com/problems/132-pattern/](https://leetcode.com/problems/132-pattern/)
 
----
+🧮 Level 3 — Range Contribution Problems
+#	Problem Name	Link	Difficulty
+6	Sum of Subarray Minimums	🔗 https://leetcode.com/problems/sum-of-subarray-minimums/
+	Medium
+7	Sum of Subarray Maximums (variation of 907)	🔗 https://leetcode.com/problems/sum-of-subarray-minimums/discuss/1936082/Change-only-one-line-of-code
+	Medium
 
-### 🧠 Expression Parsing / Evaluation
 
-7. **Basic Calculator** – [https://leetcode.com/problems/basic-calculator/](https://leetcode.com/problems/basic-calculator/)
-8. **Basic Calculator II** – [https://leetcode.com/problems/basic-calculator-ii/](https://leetcode.com/problems/basic-calculator-ii/)
-9. **Basic Calculator III** – [https://leetcode.com/problems/basic-calculator-iii/](https://leetcode.com/problems/basic-calculator-iii/)
-10. **Evaluate Reverse Polish Notation** – [https://leetcode.com/problems/evaluate-reverse-polish-notation/](https://leetcode.com/problems/evaluate-reverse-polish-notation/)
-11. **Decode String** – [https://leetcode.com/problems/decode-string/](https://leetcode.com/problems/decode-string/)
-12. **Remove Duplicate Letters** – [https://leetcode.com/problems/remove-duplicate-letters/](https://leetcode.com/problems/remove-duplicate-letters/)
-13. **Score of Parentheses** – [https://leetcode.com/problems/score-of-parentheses/](https://leetcode.com/problems/score-of-parentheses/)
+🧱 Level 4 — Histogram / Rectangle Type
+#	Problem Name	Link	Difficulty
+8	Largest Rectangle in Histogram	🔗 https://leetcode.com/problems/largest-rectangle-in-histogram/
+	Hard
+9	Maximal Rectangle	🔗 https://leetcode.com/problems/maximal-rectangle/
+	Hard
 
----
 
-### ⚙️ Simulation / Structural Stack
+🧩 Level 5 — Pattern & Reverse Direction Problems
+#	Problem Name	Link	Difficulty
+10	132 Pattern	🔗 https://leetcode.com/problems/132-pattern/
+	Medium
+11	Trapping Rain Water	🔗 https://leetcode.com/problems/trapping-rain-water/
+	Hard
 
-14. **Exclusive Time of Functions** – [https://leetcode.com/problems/exclusive-time-of-functions/](https://leetcode.com/problems/exclusive-time-of-functions/)
-15. **Asteroid Collision** – [https://leetcode.com/problems/asteroid-collision/](https://leetcode.com/problems/asteroid-collision/)
-16. **Minimum Remove to Make Valid Parentheses** – [https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/](https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/)
-17. **Remove K Digits** – [https://leetcode.com/problems/remove-k-digits/](https://leetcode.com/problems/remove-k-digits/)
-18. **Validate Stack Sequences** – [https://leetcode.com/problems/validate-stack-sequences/](https://leetcode.com/problems/validate-stack-sequences/)
 
----
+⚡ Level 6 — Stack in String / Number Problems
+#	Problem Name	Link	Difficulty
+12	Remove K Digits	🔗 https://leetcode.com/problems/remove-k-digits/
+	Medium
+13	Next Greater Element III	🔗 https://leetcode.com/problems/next-greater-element-iii/
+	Medium
 
-### 🔥 Ultra-Hard / Hybrid Stack Problems
 
-19. **Expression Add Operators** – [https://leetcode.com/problems/expression-add-operators/](https://leetcode.com/problems/expression-add-operators/)
-20. **Longest Valid Parentheses** – [https://leetcode.com/problems/longest-valid-parentheses/](https://leetcode.com/problems/longest-valid-parentheses/)
-21. **Smallest Subsequence of Distinct Characters** – [https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/](https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/)
-22. **Maximum Frequency Stack** – [https://leetcode.com/problems/maximum-frequency-stack/](https://leetcode.com/problems/maximum-frequency-stack/)
-
----
-
-Would you like me to generate a **practice roadmap (day-by-day)** using these — starting from monotonic to parsing to hybrid stack problems? It’ll help you progress systematically from medium → hard → extreme.
+🚀 Level 7 — Advanced / Simulation Stack Patterns
+#	Problem Name	Link	Difficulty
+14	Asteroid Collision	🔗 https://leetcode.com/problems/asteroid-collision/
+	Medium
+15	Minimum Add to Make Parentheses Valid	🔗 https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
+	Easy

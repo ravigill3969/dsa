@@ -1,24 +1,20 @@
 package main
 
 import (
+	"container/list"
 	"fmt"
 )
 
 func main() {
-	res := scoreOfParentheses("()()")
-	fmt.Println(res)
-}
+	l := list.New()
+	l.PushFront(1)
+	l.PushBack(2)
+	l.PushBack(3)
 
-func scoreOfParentheses(s string) int {
-	res := 0
+	fmt.Println("All elements:")
+	for e := l.Front(); e != nil; e = e.Next() {
+		fmt.Println(e.Value)
+	}
 
-	// var stack []byte
-
-	// for i := 0; i < len(s); i++ {
-	// 	if s[i] == "" {
-
-	// 	}
-	// }
-
-	return res
+	fmt.Println("Last element:", l.Back().Value)
 }
