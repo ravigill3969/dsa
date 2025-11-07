@@ -1,56 +1,17 @@
-🧱 Level 1 — Core Basics
-#	Problem Name	Link	Difficulty
-1	Next Greater Element I	🔗 https://leetcode.com/problems/next-greater-element-i/
-	Easy
-2	Next Greater Element II	🔗 https://leetcode.com/problems/next-greater-element-ii/
-	Medium
-3	Next Smaller Element (GeeksforGeeks)	🔗 https://www.geeksforgeeks.org/next-smaller-element/
-	Easy
+Here are 10 **medium-difficulty** binary search–oriented problems from LeetCode, with links and tags to categorize their patterns:
 
+| #   | Problem | Link | Tag(s) |
+| --- | ------- | ---- | ------ |
 
-⚙️ Level 2 — Counting / Window Problems
-#	Problem Name	Link	Difficulty
-4	Daily Temperatures	🔗 https://leetcode.com/problems/daily-temperatures/
-	Medium
-<!-- 5	Online Stock Span	🔗 https://leetcode.com/problems/online-stock-span/
-	Medium -->
+| 6 | 875. Koko Eating Bananas | [Link](https://leetcode.com/problems/koko-eating-bananas/) ([LeetCode][6]) | “binary search on answer space”, “monotonic predicate” |
 
+If you like, I can pull **10 additional hard-level binary search problems** (with links + tags) for your next stage.
 
-🧮 Level 3 — Range Contribution Problems
-#	Problem Name	Link	Difficulty
-6	Sum of Subarray Minimums	🔗 https://leetcode.com/problems/sum-of-subarray-minimums/
-	Medium
-7	Sum of Subarray Maximums (variation of 907)	🔗 https://leetcode.com/problems/sum-of-subarray-minimums/discuss/1936082/Change-only-one-line-of-code
-	Medium
-
-
-🧱 Level 4 — Histogram / Rectangle Type
-#	Problem Name	Link	Difficulty
-8	Largest Rectangle in Histogram	🔗 https://leetcode.com/problems/largest-rectangle-in-histogram/
-	Hard
-9	Maximal Rectangle	🔗 https://leetcode.com/problems/maximal-rectangle/
-	Hard
-
-
-🧩 Level 5 — Pattern & Reverse Direction Problems
-#	Problem Name	Link	Difficulty
-10	132 Pattern	🔗 https://leetcode.com/problems/132-pattern/
-	Medium
-11	Trapping Rain Water	🔗 https://leetcode.com/problems/trapping-rain-water/
-	Hard
-
-
-⚡ Level 6 — Stack in String / Number Problems
-#	Problem Name	Link	Difficulty
-12	Remove K Digits	🔗 https://leetcode.com/problems/remove-k-digits/
-	Medium
-13	Next Greater Element III	🔗 https://leetcode.com/problems/next-greater-element-iii/
-	Medium
-
-
-🚀 Level 7 — Advanced / Simulation Stack Patterns
-#	Problem Name	Link	Difficulty
-14	Asteroid Collision	🔗 https://leetcode.com/problems/asteroid-collision/
-	Medium
-15	Minimum Add to Make Parentheses Valid	🔗 https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
-	Easy
+[1]: https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/?utm_source=chatgpt.com "34. Find First and Last Position of Element in Sorted Array - LeetCode"
+[3]: https://leetcode.com/problems/find-peak-element/?utm_source=chatgpt.com "Find Peak Element"
+[4]: https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/?utm_source=chatgpt.com "Find Minimum in Rotated Sorted Array"
+[5]: https://leetcode.com/problems/search-a-2d-matrix-ii/?utm_source=chatgpt.com "Search a 2D Matrix II"
+[6]: https://leetcode.com/problems/koko-eating-bananas/?utm_source=chatgpt.com "Koko Eating Bananas"
+[7]: https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/?utm_source=chatgpt.com "1482. Minimum Number of Days to Make m Bouquets"
+[8]: https://leetcode.com/problems/minimum-size-subarray-sum/?utm_source=chatgpt.com "Minimum Size Subarray Sum"
+[9]: https://leetcode.com/problems/count-complete-tree-nodes/?utm_source=chatgpt.com "Count Complete Tree Nodes"

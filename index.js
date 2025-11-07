@@ -1,73 +1,54 @@
 /**
- * @param {number} m
- * @param {number} n
- * @param {number[][]} guards
- * @param {number[][]} walls
- * @return {number}
+ * @param {string} s1
+ * @param {string} s2
+ * @return {boolean}
  */
-var countUnguarded = function (m, n, guards, walls) {
-  let arr = Array.from({ length: m }, () => new Array(n).fill(0));
-  let res = 0;
+function checkInclusion(s1, s2) {
+  let arr1 = new Array(26).fill(0);
+  let arr2 = new Array(26).fill(0);
 
-  for (let [i, j] of guards) arr[i][j] = "G";
-  for (let [i, j] of walls) arr[i][j] = "W";
+  let a_char_code = "a".charCodeAt();
 
-  function goAllDirection(i, j) {
-    // down
-    for (let x = i + 1; x < m; x++) {
-      if (arr[x][j] === "W" || arr[x][j] === "G") break;
-      if (arr[x][j] === 0) arr[x][j] = -1;
-    }
+  for (let i = 0; i < s1.length; i++) {
+    let curs1_char_char_code = s1[i].charCodeAt();
+    let curs2_char_char_code = s2[i].charCodeAt();
 
-    // up
-    for (let x = i - 1; x >= 0; x--) {
-      if (arr[x][j] === "W" || arr[x][j] === "G") break;
-      if (arr[x][j] === 0) arr[x][j] = -1;
-    }
+    arr1[curs1_char_char_code - a_char_code]++;
+    arr2[curs2_char_char_code - a_char_code]++;
+  }
 
-    // right
-    for (let y = j + 1; y < n; y++) {
-      if (arr[i][y] === "W" || arr[i][y] === "G") break;
-      if (arr[i][y] === 0) arr[i][y] = -1;
-    }
+  if (isMatch(arr1, arr2)) {
+    return true;
+  }
 
-    // left
-    for (let y = j - 1; y >= 0; y--) {
-      if (arr[i][y] === "W" || arr[i][y] === "G") break;
-      if (arr[i][y] === 0) arr[i][y] = -1;
+  let l = 0;
+  for (let r = s1.length; r < s2.length; r++) {
+    let cur_char_code_at_l = s2[l].charCodeAt();
+    let cur_char_code_at_r = s2[r].charCodeAt();
+
+    arr2[cur_char_code_at_l - a_char_code]--;
+    l++;
+
+    arr2[cur_char_code_at_r - a_char_code]++;
+
+    if (isMatch(arr1, arr2)) {
+      return true;
     }
   }
 
-  for (let i = 0; i < m; i++) {
-    for (let j = 0; j < n; j++) {
-      if (arr[i][j] === "G") {
-        goAllDirection(i, j);
-      }
+  return false;
+}
+
+function isMatch(arr1, arr2) {
+  console.log(arr1, arr2);
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] != arr2[i]) {
+      return false;
     }
   }
 
-  for (let i = 0; i < m; i++) {
-    for (let j = 0; j < n; j++) {
-      if (arr[i][j] === 0) res++;
-    }
-  }
+  return true;
+}
 
-  return res;
-};
-
-let res = countUnguarded(
-  4,
-  6,
-  [
-    [0, 0],
-    [1, 1],
-    [2, 3],
-  ],
-  [
-    [0, 1],
-    [2, 2],
-    [1, 4],
-  ]
-);
-
-console.log(res); // ✅ correct output is 7
+let res = checkInclusion((s1 = "a"), (s2 = "ab"));
+console.log(res);
