@@ -1,54 +1,39 @@
 /**
- * @param {string} s1
- * @param {string} s2
- * @return {boolean}
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
  */
-function checkInclusion(s1, s2) {
-  let arr1 = new Array(26).fill(0);
-  let arr2 = new Array(26).fill(0);
+function maxSlidingWindow(nums, k) {
+  let stack = [[0, nums[0]]];
+  let res = [];
 
-  let a_char_code = "a".charCodeAt();
+  for (let i = 1; i < k; i++) {
+    while (stack.length > 0 && stack[stack.length - 1][1] < nums[i]) {
+      stack.pop();
+    }
 
-  for (let i = 0; i < s1.length; i++) {
-    let curs1_char_char_code = s1[i].charCodeAt();
-    let curs2_char_char_code = s2[i].charCodeAt();
-
-    arr1[curs1_char_char_code - a_char_code]++;
-    arr2[curs2_char_char_code - a_char_code]++;
+    stack.push([i, nums[i]]);
   }
 
-  if (isMatch(arr1, arr2)) {
-    return true;
-  }
+  res.push(stack[0][1]);
 
   let l = 0;
-  for (let r = s1.length; r < s2.length; r++) {
-    let cur_char_code_at_l = s2[l].charCodeAt();
-    let cur_char_code_at_r = s2[r].charCodeAt();
-
-    arr2[cur_char_code_at_l - a_char_code]--;
+  for (let r = k; r < nums.length; r++) {
+    if (l === stack[0][0]) {
+      stack.shift();
+    }
     l++;
 
-    arr2[cur_char_code_at_r - a_char_code]++;
-
-    if (isMatch(arr1, arr2)) {
-      return true;
+    while (stack.length > 0 && stack[stack.length - 1][1] < nums[r]) {
+      stack.pop();
     }
+    stack.push([r, nums[r]]);
+
+    res.push(stack[0][1]);
   }
 
-  return false;
+  console.log(res);
+  return res;
 }
 
-function isMatch(arr1, arr2) {
-  console.log(arr1, arr2);
-  for (let i = 0; i < arr1.length; i++) {
-    if (arr1[i] != arr2[i]) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-let res = checkInclusion((s1 = "a"), (s2 = "ab"));
-console.log(res);
+maxSlidingWindow((nums = [1, 3, 1, 2, 0, 5]), (k = 3));
